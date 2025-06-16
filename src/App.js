@@ -26,7 +26,7 @@ function App() {
             <p>Some more content...</p>
             <p>Some more content...</p>
             <p>Some more content...</p>
-            /* Add many more paragraphs until a scrollbar appears */
+            {/* Add many more paragraphs until a scrollbar appears */}
             <p style={{ height: '1000px' }}>This is a tall paragraph to force scrolling.</p>
         </div>
       </div>

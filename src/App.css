@@ -88,3 +88,25 @@
 h2 {
   color: #333;
 }
+
+/* --- Add this at the very end of your App.css file --- */
+
+/* Responsive Styles for Mobile Devices */
+@media (max-width: 768px) {
+  
+  /* Allow the main App container to have a natural height based on content */
+  .App {
+    height: auto;
+  }
+  
+  /* Change the main content to a column layout */
+  .main-content {
+    flex-direction: column;
+    overflow: visible; /* Allow the content to determine the page height */
+  }
+
+  /* Allow the right container to have a natural height and remove its scrollbar */
+  .right-container {
+    overflow-y: visible;
+  }
+}
