@@ -15,6 +15,18 @@
   flex-shrink: 0;
 }
 
+/* ADD THESE STYLES for the logo */
+.navbar-logo {
+  float: left;
+  padding: 8px 12px;
+}
+
+.navbar-logo img {
+  height: 30px; /* Adjust the height of your logo as needed */
+  width: auto;
+  display: block;
+}
+
 .navbar ul {
   margin: 0;
   padding: 0;
