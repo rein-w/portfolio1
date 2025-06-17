@@ -6,19 +6,19 @@
   text-align: left;
 }
 
-/* Navigation Bar Styling */
+/* --- Navigation Bar Styling --- */
 .navbar {
   background-color: #f2f2f2;
   border-bottom: 1px solid #ddd;
-  padding: 0 10px; /* Add some overall padding */
-  
-  /* Use Flexbox for alignment */
+  padding: 0 20px; /* Adjusted padding */
   display: flex;
   align-items: center;
+  justify-content: space-between; /* This pushes items to the ends */
+  position: relative; /* Needed for the mobile menu dropdown */
 }
 
 .navbar-logo {
-  padding: 0px 20px 0px 20px; /* Padding for spacing */
+  padding: 8px 0 8px 10px; /* Adjusted padding */
 }
 
 .navbar-logo img {
@@ -27,51 +27,50 @@
   display: block;
 }
 
-.navbar ul {
+.nav-links {
   margin: 0;
   padding: 0;
   list-style: none;
-  display: flex; /* Make list items arrange horizontally */
+  display: flex; /* Make list items arrange horizontally on desktop */
 }
 
-/* Find and update this existing rule */
-.navbar li a {
+.nav-links li a {
   display: block;
   color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  position: relative; /* <-- Add this */
-  transition: color 0.4s ease-in-out; /* <-- Add this for the color fade */
-}
-
-.navbar li a {
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  position: relative;
-  
-  /* --- KEY CHANGES --- */
-  /* 1. Set the gradient as the background, but make it transparent initially */
-  background: linear-gradient(90deg, #d9534f, #f0ad4e);
-  -webkit-background-clip: text;
-  background-clip: text;
-  
-  /* 2. Set the initial text color to black, but it will transition to transparent */
-  color: black; 
-  
-  /* 3. Add a transition for a smoother effect on the color */
   transition: color 0.4s ease-in-out;
 }
 
-
-.navbar li a:hover {
-  /* On hover, make the text color transparent to reveal the gradient underneath */
+.nav-links li a:hover {
   color: transparent;
+  background: linear-gradient(90deg, #d9534f, #f0ad4e);
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 
-/* Main Content Layout */
+/* --- Hamburger Menu Styling --- */
+.hamburger-menu {
+  display: none; /* Hidden on desktop */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger-menu .bar {
+  height: 3px;
+  width: 100%;
+  background-color: black;
+  border-radius: 10px;
+}
+
+/* --- Main Content & Containers --- */
 .main-content {
   display: flex;
   flex-direction: row;
@@ -79,10 +78,10 @@
   overflow: hidden;
 }
 
-/* Left and Right Containers */
 .left-container {
   flex: 1;
-  padding: 20px;
+  /* Change the padding to this: */
+  padding: 20px 20px 20px 30px; 
   background-color: #f9f9f9;
 }
 
@@ -94,31 +93,41 @@
   scroll-behavior: smooth; 
 }
 
-/* Scrollbar Styling */
-.right-container::-webkit-scrollbar {
-  width: 10px;
-}
-
-.right-container::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
-}
-
-.right-container::-webkit-scrollbar-thumb {
-  background-color: #c5c5c5;
-  border-radius: 5px;
-}
-
-.right-container::-webkit-scrollbar-thumb:hover {
-  background-color: #a8a8a8;
-}
-
-h2 {
-  color: #333;
-}
-
 /* --- Responsive Styles for Mobile Devices --- */
 @media (max-width: 768px) {
   
+  /* Show the hamburger menu icon */
+  .hamburger-menu {
+    display: flex;
+  }
+  
+  /* Hide the navigation links by default */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position below the navbar */
+    right: 0;
+    background-color: #f2f2f2;
+    width: 200px; /* Or a width of your choice */
+    border: 1px solid #ddd;
+    border-top: none;
+    flex-direction: column;
+  }
+  
+  /* When the menu is open, make the links visible */
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links li a {
+    text-align: left;
+  }
+
+  /* --- Stack the main containers --- */
   .App {
     height: auto;
   }
@@ -132,3 +141,10 @@ h2 {
     overflow-y: visible;
   }
 }
+
+h2 {
+  color: #333;
+  font-weight: 900; /* <-- This applies the "Thin" font weight */
+}
+
+/* Other existing styles for scrollbar and h2 remain the same */
