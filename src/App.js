@@ -16,7 +16,6 @@ function App() {
           <li><a href="#tech">Tech</a></li>
           <li><a href="#cooking">Cooking</a></li>
           <li><a href="#thoughts">Thoughts</a></li>
-          <li><a href="#Contact">Contact</a></li>
         </ul>
       </nav>
 

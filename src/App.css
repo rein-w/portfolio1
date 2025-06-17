@@ -1,4 +1,4 @@
-/* Make the entire app container a flex column that takes up the full screen height */
+/* General App Styling */
 .App {
   display: flex;
   flex-direction: column;
@@ -6,23 +6,23 @@
   text-align: left;
 }
 
-/* Navigation Bar Styling (no changes here) */
+/* Navigation Bar Styling */
 .navbar {
   background-color: #f2f2f2;
-  overflow: hidden;
   border-bottom: 1px solid #ddd;
-  /* The navbar will not grow or shrink */
-  flex-shrink: 0;
+  padding: 0 10px; /* Add some overall padding */
+  
+  /* Use Flexbox for alignment */
+  display: flex;
+  align-items: center;
 }
 
-/* ADD THESE STYLES for the logo */
 .navbar-logo {
-  float: left;
-  padding: 8px 12px;
+  padding: 0px 20px 0px 20px; /* Padding for spacing */
 }
 
 .navbar-logo img {
-  height: 30px; /* Adjust the height of your logo as needed */
+  height: 30px; 
   width: auto;
   display: block;
 }
@@ -31,93 +31,103 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex; /* Make list items arrange horizontally */
 }
 
-.navbar li {
-  float: left;
-}
-
+/* Find and update this existing rule */
 .navbar li a {
   display: block;
   color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  position: relative; /* <-- Add this */
+  transition: color 0.4s ease-in-out; /* <-- Add this for the color fade */
 }
+
+.navbar li a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  position: relative;
+  
+  /* --- KEY CHANGES --- */
+  /* 1. Set the gradient as the background, but make it transparent initially */
+  background: linear-gradient(90deg, #d9534f, #f0ad4e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* 2. Set the initial text color to black, but it will transition to transparent */
+  color: black; 
+  
+  /* 3. Add a transition for a smoother effect on the color */
+  transition: color 0.4s ease-in-out;
+}
+
 
 .navbar li a:hover {
-  background-color: #ddd;
-  color: black;
+  /* On hover, make the text color transparent to reveal the gradient underneath */
+  color: transparent;
 }
 
-/* This container will hold the two columns and take up all available vertical space */
+/* Main Content Layout */
 .main-content {
   display: flex;
   flex-direction: row;
-  /* This makes the container grow to fill the space */
   flex-grow: 1;
-  /* This is important to contain the scrolling within the right container */
   overflow: hidden;
 }
 
 /* Left and Right Containers */
 .left-container {
-  flex: 1; /* Takes up 1 part of the available space */
+  flex: 1;
   padding: 20px;
   background-color: #f9f9f9;
-  /* This container will not scroll */
 }
 
-/* Find this existing rule in your App.css */
 .right-container {
   flex: 2;
   padding: 20px;
   background-color: #ffffff;
   overflow-y: auto;
-  
-  /* ADD THIS LINE for smoother anchor link scrolling */
   scroll-behavior: smooth; 
 }
 
-/* ADD THESE NEW RULES for styling the scrollbar (for Webkit browsers like Chrome, Safari) */
+/* Scrollbar Styling */
 .right-container::-webkit-scrollbar {
-  width: 10px; /* Makes the scrollbar thinner */
+  width: 10px;
 }
 
 .right-container::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Color of the tracking area */
+  background-color: #f1f1f1;
 }
 
 .right-container::-webkit-scrollbar-thumb {
-  background: #c5c5c5; /* Color of the scroll handle */
-  border-radius: 5px; /* Rounds the corners of the scroll handle */
+  background-color: #c5c5c5;
+  border-radius: 5px;
 }
 
 .right-container::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8; /* Color of the scroll handle on hover */
+  background-color: #a8a8a8;
 }
 
 h2 {
   color: #333;
 }
 
-/* --- Add this at the very end of your App.css file --- */
-
-/* Responsive Styles for Mobile Devices */
+/* --- Responsive Styles for Mobile Devices --- */
 @media (max-width: 768px) {
   
-  /* Allow the main App container to have a natural height based on content */
   .App {
     height: auto;
   }
   
-  /* Change the main content to a column layout */
   .main-content {
     flex-direction: column;
-    overflow: visible; /* Allow the content to determine the page height */
+    overflow: visible;
   }
 
-  /* Allow the right container to have a natural height and remove its scrollbar */
   .right-container {
     overflow-y: visible;
   }
