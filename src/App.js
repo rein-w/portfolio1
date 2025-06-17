@@ -13,7 +13,7 @@ function App() {
           <img src={myLogo} alt="logo" />
         </a>
         <ul>
-          <li><a href="#tech">Tech</a></li>
+          <li><a href="#tech">Tech & Design</a></li>
           <li><a href="#cooking">Cooking</a></li>
           <li><a href="#thoughts">Thoughts</a></li>
         </ul>
