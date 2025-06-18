@@ -82,6 +82,42 @@
   flex: 1;
   padding: 20px 20px 20px 30px; 
   background-color: #f9f9f9;
+
+  /* Add these lines to control the layout */
+  display: flex;
+  flex-direction: column;
+}
+
+/* This new rule makes your bio text expand to fill the available space, pushing the footer down */
+.left-container-main {
+  flex-grow: 1;
+}
+
+/* --- ADD THESE NEW STYLES for the footer content --- */
+.left-container-footer {
+  padding-top: 20px; /* Space between the bio and the footer items */
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px; /* Space between icons */
+  margin-bottom: 16px;
+}
+
+.social-icons a {
+  color: #333; /* Icon color */
+  font-size: 24px; /* Icon size */
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #d9534f; /* Icon color on hover */
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0;
 }
 
 .right-container {

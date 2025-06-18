@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import myLogo from './my_logo_r.png';
-import Card from './Card.js'; // Import the new Card component
+import Card from './Card.js';
+// 1. Import the icons you need from react-icons
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
-// Sample project data - you can replace this with your actual projects
+// Sample project data
 const projectsData = [
   {
     id: 1,
@@ -40,7 +42,6 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProjects, setFilteredProjects] = useState(projectsData);
 
-  // This effect filters projects whenever the search term changes
   useEffect(() => {
     const results = projectsData.filter(project =>
       project.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -68,15 +69,31 @@ function App() {
 
       <div className="main-content">
         <div className="left-container">
-          <h2>Left Container</h2>
-          <p>I am a resourceful Technical Business Analyst with a proven track record in leading process transformations and implementing effective system solutions. I specialise in identifying and resolving complex business pain-points, helping organisations enhance their strategic delivery through practical, human-centred solutions.
-            <br></br>
-            <br></br>
+          {/* Main bio content */}
+          <div className="left-container-main">
+            <h2>Left Container</h2>
+            <p>I am a resourceful Technical Business Analyst with a proven track record in leading process transformations and implementing effective system solutions. I specialise in identifying and resolving complex business pain-points, helping organisations enhance their strategic delivery through practical, human-centred solutions.
+              <br /><br />
               With a strong foundation in both business and technology, I bridge the gap between stakeholders and developers to deliver value-driven outcomes. I bring clarity to complexity through a deep focus on user experience, clean design, and purposeful functionality — always prioritising simplicity, minimalism, and meaningful impact.</p>
+          </div>
+          
+          {/* 2. ADD THIS NEW FOOTER SECTION */}
+          <div className="left-container-footer">
+            <div className="social-icons">
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <FaLinkedin />
+              </a>
+              <a href="https://www.github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <FaGithub />
+              </a>
+            </div>
+            <p className="footer-text">
+              <em>Thank you to YM for motivating & inspiring me to create this page.</em>
+            </p>
+          </div>
         </div>
         
         <div className="right-container">
-          {/* Search Bar */}
           <div className="search-container">
             <input
               type="text"
@@ -86,8 +103,6 @@ function App() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-
-          {/* Card Grid */}
           <div className="card-grid">
             {filteredProjects.map(project => (
               <Card
