@@ -74,12 +74,29 @@
 }
 
 .search-icon-btn {
-  background: transparent;
+  background-color: transparent;
+  color: #333; /* The icon is solid black by default */
+  
   border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
+  border-radius: 8px;
   padding: 10px;
-  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  
+  /* Add a transition for both color and background */
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out; 
+}
+
+.search-icon-btn:hover {
+  /* On hover, change the icon color and add a subtle background */
+  color: #d9534f;
+}
+
+.search-container.active .search-icon-btn {
+  color: #d9534f; /* Sets the icon color to your theme's red */
 }
 
 .search-bar {
@@ -94,7 +111,7 @@
 
 .search-container.active .search-bar {
   width: 200px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #d9534f;
   padding: 10px 12px;
   opacity: 1;
 }
@@ -105,19 +122,26 @@
 }
 
 .filter-button {
-  background: transparent;
+  /* We will remove all background and clipping properties */
+  background-color: transparent;
+  color: #333; /* The icon is solid black by default */
+  
   border: none;
   border-radius: 8px;
-  padding: 10px 20px 10px 10px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-size: 1.2rem;
+  
+  /* Add a transition for both color and background */
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out; 
 }
 
 .filter-button:hover {
-  background: #e0e0e0;
+  /* On hover, change the icon color and add a subtle background */
+  color: #d9534f;
 }
 
 .filter-dropdown {
@@ -209,7 +233,7 @@
 
 .social-icons a {
   color: #333;
-  font-size: 24px;
+  font-size: 30px;
   transition: color 0.3s ease;
 }
 
@@ -226,7 +250,7 @@
 .right-container {
   flex: 2;
   /* Change the first value (top padding) from 20px to 55px */
-  padding: 55px 80px 20px 0; 
+  padding: 40px 80px 20px 0; 
   background-color: #ffffff;
   overflow-y: auto;
   scroll-behavior: smooth; 
@@ -248,7 +272,8 @@ h2 {
 @media (max-width: 768px) {
   /* Reset padding for mobile */
   .navbar, .left-container, .right-container {
-    padding: 10px 20px;
+    /* Change the second value (left/right padding) from 20px to 30px, or your desired value */
+    padding: 10px 30px;
   }
   
   .navbar {
