@@ -32,11 +32,11 @@
 
 /* This is now the right-side column */
 .card-content {
-  padding: 16px;
+  /* Padding is now: 24px top, 24px right, 24px bottom, 32px left */
+  padding: 20px 20px 20px 32px;
+  
   display: flex;
   flex-direction: column;
-
-  /* This will take up 3/5 of the space */
   flex: 3; 
 }
 
