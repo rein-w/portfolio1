@@ -5,7 +5,10 @@
   overflow: hidden;
   transition: transform 0.2s ease-in-out;
   display: flex;
-  flex-direction: column;
+  
+  /* --- KEY CHANGE: From column to row --- */
+  flex-direction: row; 
+  
   height: 200px; 
 }
 
@@ -13,17 +16,28 @@
   transform: translateY(-5px);
 }
 
+/* New container for the image on the left */
+.card-image-container {
+  /* This will take up 2/5 of the space */
+  flex: 2;
+  overflow: hidden; /* Ensures the image corners are rounded */
+}
+
+/* Image now fills its container */
 .card-image {
   width: 100%;
-  height: 180px;
+  height: 100%; /* <-- KEY CHANGE: Image fills the container height */
   object-fit: cover;
 }
 
+/* This is now the right-side column */
 .card-content {
   padding: 16px;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
+
+  /* This will take up 3/5 of the space */
+  flex: 3; 
 }
 
 .card-title {
@@ -35,12 +49,10 @@
   margin: 0 0 16px 0;
   flex-grow: 1;
   color: #555;
-  
-  /* These properties will truncate long text after 3 lines */
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3; /* You can change this number to show more or fewer lines */
+  -webkit-line-clamp: 3;
 }
 
 .card-tags {
@@ -49,25 +61,20 @@
   gap: 8px;
 }
 
-/* In src/Card.css */
-
-/* In src/Card.css */
-
 .tag {
-  position: relative; /* Needed to position the pseudo-element */
-  z-index: 1; /* Ensures the text stays on top */
+  position: relative;
+  z-index: 1;
   background-color: #DC2F02;
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 0.75rem;
   font-weight: 500;
-  transition: color 0.3s ease-in-out; /* We can transition color if needed */
+  transition: color 0.3s ease-in-out;
   cursor: pointer;
-  overflow: hidden; /* This will contain the pseudo-element */
+  overflow: hidden;
 }
 
-/* Add this new rule */
 .tag::before {
   content: '';
   position: absolute;
@@ -76,13 +83,11 @@
   right: 0;
   bottom: 0;
   background: linear-gradient(90deg, #9D0208, #F48C06);
-  opacity: 0; /* Hidden by default */
-  transition: opacity 0.3s ease-in-out; /* Transition the opacity */
-  z-index: -1; /* Place it behind the text */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1;
 }
 
-/* Update the existing :hover rule */
 .tag:hover::before {
-  opacity: 1; /* Fade the gradient in on hover */
+  opacity: 1;
 }
-

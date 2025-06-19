@@ -5,7 +5,12 @@ import './Card.css';
 function Card({ title, description, imageUrl, tags }) {
   return (
     <div className="card">
-      <img src={imageUrl} alt={title} className="card-image" />
+      {/* Column 1: Image Container */}
+      <div className="card-image-container">
+        <img src={imageUrl} alt={title} className="card-image" />
+      </div>
+      
+      {/* Column 2: Content Container */}
       <div className="card-content">
         <h3 className="card-title">{title}</h3>
         <p className="card-description">{description}</p>
