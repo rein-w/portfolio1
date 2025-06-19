@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import myLogo from './my_logo_r.png';
 import Card from './Card.js';
-import { FaLinkedin, FaGithub, FaSlidersH } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaSearch, FaSlidersH } from 'react-icons/fa';
 
-// Sample project data
+// Sample project data - you can replace this with your actual projects
 const projectsData = [
   {
     id: 1,
@@ -36,45 +36,43 @@ const projectsData = [
   }
 ];
 
-// 2. Get a list of all unique tags from your project data
 const allTags = [...new Set(projectsData.flatMap(p => p.tags))];
 
 function App() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProjects, setFilteredProjects] = useState(projectsData);
-  
-  // 3. Add new state for the filter
   const [selectedTags, setSelectedTags] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const searchInputRef = useRef(null); // Ref to focus the input field
 
-  // 4. Update the filtering logic to use both search and tags
   useEffect(() => {
     let results = projectsData;
-
-    // Filter by search term first
     if (searchTerm) {
       results = results.filter(project =>
         project.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-
-    // Then, filter by selected tags
     if (selectedTags.length > 0) {
       results = results.filter(project =>
         selectedTags.every(tag => project.tags.includes(tag))
       );
     }
-
     setFilteredProjects(results);
   }, [searchTerm, selectedTags]);
 
-  // 5. Function to handle selecting/deselecting a tag
+   useEffect(() => {
+    if (isSearchActive) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearchActive]);
+
   const handleTagChange = (tag) => {
     setSelectedTags(prevTags =>
       prevTags.includes(tag)
-        ? prevTags.filter(t => t !== tag) // Deselect tag
-        : [...prevTags, tag] // Select tag
+        ? prevTags.filter(t => t !== tag)
+        : [...prevTags, tag]
     );
   };
 
@@ -89,6 +87,48 @@ function App() {
             <li><a href="#cooking">Cooking</a></li>
             <li><a href="#thoughts">Thoughts</a></li>
         </ul>
+
+        {/* This spacer div will push the controls to the right */}
+        <div className="spacer" />
+
+        {/* --- CONTROLS MOVED INTO THE NAVBAR --- */}
+  <div className="controls-container">
+          {/* 4. Updated search container with dynamic class */}
+          <div className={`search-container ${isSearchActive ? 'active' : ''}`}>
+            <button className="search-icon-btn" onClick={() => setIsSearchActive(true)} aria-label="Open search">
+              <FaSearch />
+            </button>
+            <input
+              ref={searchInputRef}
+              type="text"
+              placeholder="Search..."
+              className="search-bar"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onBlur={() => {if(!searchTerm) setIsSearchActive(false)}} // Optional: close when it loses focus
+            />
+          </div>
+          <div className="filter-container">
+            <button className="filter-button" onClick={() => setIsFilterOpen(!isFilterOpen)} aria-label="Filter by tags">
+              <FaSlidersH />
+            </button>
+            {isFilterOpen && (
+              <div className="filter-dropdown">
+                {allTags.map(tag => (
+                  <label key={tag} className="filter-tag">
+                    <input
+                      type="checkbox"
+                      checked={selectedTags.includes(tag)}
+                      onChange={() => handleTagChange(tag)}
+                    />
+                    {tag}
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+        
         <button className="hamburger-menu" onClick={() => setIsNavOpen(!isNavOpen)} aria-label="Toggle navigation">
           <div className="bar"></div>
           <div className="bar"></div>
@@ -96,6 +136,7 @@ function App() {
         </button>
       </nav>
 
+      {/* --- MAIN CONTENT IS UNCHANGED --- */}
       <div className="main-content">
         <div className="left-container">
             <div className="left-container-main">
@@ -116,38 +157,7 @@ function App() {
         </div>
         
         <div className="right-container">
-          {/* 6. New controls container for search and filter */}
-          <div className="controls-container">
-            <div className="search-container">
-              <input
-                type="text"
-                placeholder="Search by project title..."
-                className="search-bar"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            <div className="filter-container">
-              <button className="filter-button" onClick={() => setIsFilterOpen(!isFilterOpen)} aria-label="Filter by tags">
-                <FaSlidersH />
-              </button>
-              {isFilterOpen && (
-                <div className="filter-dropdown">
-                  {allTags.map(tag => (
-                    <label key={tag} className="filter-tag">
-                      <input
-                        type="checkbox"
-                        checked={selectedTags.includes(tag)}
-                        onChange={() => handleTagChange(tag)}
-                      />
-                      {tag}
-                    </label>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
+          {/* Controls are no longer here */}
           <div className="card-grid">
             {filteredProjects.map(project => (
               <Card
