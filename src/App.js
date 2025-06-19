@@ -84,7 +84,7 @@ function App() {
           <img src={myLogo} alt="logo" />
         </a>
         <ul className={`nav-links ${isNavOpen ? 'active' : ''}`}>
-            <li><a href="#tech">Tech & Design</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#kitchen">Kitchen</a></li>
             <li><a href="#thoughts">Thoughts</a></li>
         </ul>
