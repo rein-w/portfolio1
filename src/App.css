@@ -8,7 +8,7 @@
 
 /* --- Navigation Bar Styling --- */
 .navbar {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   border-bottom: 1px solid #ddd;
   padding: 0 20px;
   display: flex;
@@ -109,7 +109,7 @@
   background: transparent;
   border: none;
   border-radius: 8px;
-  padding: 10px;
+  padding: 10px 20px 10px 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,7 +182,7 @@
 .left-container {
   flex: 1;
   padding: 20px 20px 20px 30px; 
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
 }
@@ -198,6 +198,9 @@
 
 .left-container-footer {
   padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
 }
 
 .social-icons {
