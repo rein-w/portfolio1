@@ -13,8 +13,9 @@
   padding: 0 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start; 
   position: relative;
+  gap: 20px;
 }
 
 .navbar-logo {
@@ -36,18 +37,19 @@
 
 .nav-links li a {
   display: block;
-  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  position: relative;
+  background: linear-gradient(90deg, #d9534f, #f0ad4e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: black; 
   transition: color 0.4s ease-in-out;
 }
 
 .nav-links li a:hover {
   color: transparent;
-  background: linear-gradient(90deg, #d9534f, #f0ad4e);
-  -webkit-background-clip: text;
-  background-clip: text;
 }
 
 /* --- Hamburger Menu Styling --- */
@@ -82,36 +84,32 @@
   flex: 1;
   padding: 20px 20px 20px 30px; 
   background-color: #f9f9f9;
-
-  /* Add these lines to control the layout */
   display: flex;
   flex-direction: column;
 }
 
-/* This new rule makes your bio text expand to fill the available space, pushing the footer down */
 .left-container-main {
   flex-grow: 1;
 }
 
-/* --- ADD THESE NEW STYLES for the footer content --- */
 .left-container-footer {
-  padding-top: 20px; /* Space between the bio and the footer items */
+  padding-top: 20px;
 }
 
 .social-icons {
   display: flex;
-  gap: 16px; /* Space between icons */
+  gap: 16px;
   margin-bottom: 16px;
 }
 
 .social-icons a {
-  color: #333; /* Icon color */
-  font-size: 24px; /* Icon size */
+  color: #333;
+  font-size: 24px;
   transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-  color: #d9534f; /* Icon color on hover */
+  color: #d9534f;
 }
 
 .footer-text {
@@ -124,13 +122,23 @@
   flex: 2;
   padding: 20px;
   background-color: #ffffff;
-  overflow-y: auto; /* Reverted back to 'auto' as requested */
+  overflow-y: auto;
   scroll-behavior: smooth; 
 }
 
-/* --- Search Bar Styling --- */
-.search-container {
+/* --- Controls Container (Search + Filter) --- */
+.controls-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   margin-bottom: 24px;
+  justify-content: flex-end; /* Aligns controls to the right */
+}
+
+/* Updated Search Bar container */
+.search-container {
+  flex-basis: 25%;
+  margin-bottom: 0;
 }
 
 .search-bar {
@@ -142,6 +150,57 @@
   box-sizing: border-box;
 }
 
+/* --- Filter Styling --- */
+.filter-container {
+  position: relative;
+}
+
+.filter-button {
+  background: #f2f2f2;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.filter-button:hover {
+  background: #e0e0e0;
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 10px;
+  width: 200px;
+  z-index: 10;
+}
+
+.filter-tag {
+  display: block;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.filter-tag:hover {
+  background-color: #f2f2f2;
+}
+
+.filter-tag input {
+  margin-right: 10px;
+}
+
 /* --- Card Grid Layout --- */
 .card-grid {
   display: grid;
@@ -149,8 +208,16 @@
   gap: 24px;
 }
 
+h2 {
+  color: #333;
+  font-weight: 900;
+}
+
 /* --- Responsive Styles for Mobile Devices --- */
 @media (max-width: 768px) {
+  .navbar {
+    justify-content: space-between;
+  }
   
   .hamburger-menu {
     display: flex;
@@ -192,85 +259,4 @@
   .right-container {
     overflow-y: visible;
   }
-}
-
-h2 {
-  color: #333;
-  font-weight: 900;
-}
-
-/* Add these new styles to src/App.css */
-
-/* --- Controls Container (Search + Filter) --- */
-.controls-container {
-  display: flex;
-  align-items: center;
-  gap: 16px; /* Space between search and filter icon */
-  margin-bottom: 24px;
-}
-
-/* Updated Search Bar container */
-.search-container {
-  flex-basis: 25%; /* Makes the search bar container 1/4 of the width */
-  margin-bottom: 0; /* Margin is now on the parent */
-}
-
-/* --- Filter Styling --- */
-.filter-container {
-  position: relative; /* For positioning the dropdown */
-}
-
-.filter-button {
-  background: #f2f2f2;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1.2rem;
-}
-
-.filter-button:hover {
-  background: #e0e0e0;
-}
-
-.filter-dropdown {
-  position: absolute;
-  top: 110%; /* Position it below the button */
-  right: 0;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  padding: 10px;
-  width: 200px;
-  z-index: 10;
-}
-
-.filter-tag {
-  display: block;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-}
-
-.filter-tag:hover {
-  background-color: #f2f2f2;
-}
-
-.filter-tag input {
-  margin-right: 10px;
-}
-
-/* --- Controls Container (Search + Filter) --- */
-.controls-container {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-  justify-content: flex-end; /* <-- ADD THIS LINE */
 }
