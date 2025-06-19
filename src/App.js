@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import myLogo from './my_logo_r.png';
 import Card from './Card.js';
-import { FaLinkedin, FaGithub, FaSearch, FaSlidersH } from 'react-icons/fa';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FiSearch, FiSliders } from 'react-icons/fi';
 
 // Sample project data - you can replace this with your actual projects
 const projectsData = [
@@ -95,9 +96,9 @@ function App() {
   <div className="controls-container">
           {/* 4. Updated search container with dynamic class */}
           <div className={`search-container ${isSearchActive ? 'active' : ''}`}>
-            <button className="search-icon-btn" onClick={() => setIsSearchActive(true)} aria-label="Open search">
-              <FaSearch />
-            </button>
+<button className="search-icon-btn" onClick={() => setIsSearchActive(true)} aria-label="Open search">
+  <FiSearch />
+</button>
             <input
               ref={searchInputRef}
               type="text"
@@ -109,9 +110,9 @@ function App() {
             />
           </div>
           <div className="filter-container">
-            <button className="filter-button" onClick={() => setIsFilterOpen(!isFilterOpen)} aria-label="Filter by tags">
-              <FaSlidersH />
-            </button>
+<button className="filter-button" onClick={() => setIsFilterOpen(!isFilterOpen)} aria-label="Filter by tags">
+  <FiSliders />
+</button>
             {isFilterOpen && (
               <div className="filter-dropdown">
                 {allTags.map(tag => (
