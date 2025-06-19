@@ -10,15 +10,18 @@
 .navbar {
   background-color: #ffffff;
   border-bottom: 1px solid #ddd;
-  padding: 0 20px;
+  /* Set the main horizontal padding for the entire navbar */
+  padding: 10px 80px; 
   display: flex;
   align-items: center;
   position: relative;
 }
 
 .navbar-logo {
-  /* This adds 30px of space to the right of the logo, pushing the nav links over */
-  padding: 20px 30px 20px 30px;
+  /* Remove horizontal padding from the logo's container */
+  padding: 0;
+  /* Add space to the right to separate it from nav links */
+  margin-right: 30px;
 }
 
 .navbar-logo img {
@@ -51,7 +54,7 @@
   color: transparent;
 }
 
-/* This new rule pushes the search/filter to the right */
+/* This rule pushes the search/filter to the right */
 .spacer {
   flex-grow: 1;
 }
@@ -63,39 +66,35 @@
   gap: 16px;
 }
 
-/* Search Bar styling updated for navbar */
+/* Search Bar styling */
 .search-container {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Aligns items to the right */
+  justify-content: flex-end;
 }
 
 .search-icon-btn {
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 1.1rem; /* Size of the icon */
+  font-size: 1.1rem;
   padding: 10px;
   color: #333;
 }
 
 .search-bar {
-  /* Initial "hidden" state */
   width: 0;
   border: none;
   padding: 10px 0;
   font-size: 0.9rem;
   outline: none;
   opacity: 0;
-  
-  /* The smooth transition effect */
   transition: all 0.4s ease-in-out;
 }
 
-/* The "active" state when the icon is clicked */
 .search-container.active .search-bar {
   width: 200px;
-  border-bottom: 1px solid #333; /* Underline effect */
+  border-bottom: 1px solid #333;
   padding: 10px 12px;
   opacity: 1;
 }
@@ -171,17 +170,19 @@
   border-radius: 10px;
 }
 
-/* --- Main Content & Containers (These are not changed) --- */
+/* --- Main Content & Containers */
 .main-content {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
   overflow: hidden;
+  gap: 80px; 
 }
 
 .left-container {
   flex: 1;
-  padding: 20px 20px 20px 30px; 
+  /* Match the navbar's left padding */
+  padding: 20px 0 20px 80px; 
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -192,15 +193,12 @@
 }
 
 .left-container-main h2, .left-container-main p {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .left-container-footer {
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0;
 }
 
 .social-icons {
@@ -227,12 +225,14 @@
 
 .right-container {
   flex: 2;
-  padding: 20px;
+  /* Change the first value (top padding) from 20px to 55px */
+  padding: 55px 80px 20px 0; 
   background-color: #ffffff;
   overflow-y: auto;
   scroll-behavior: smooth; 
 }
 
+/* --- Card Grid, h2, and other styles remain the same --- */
 .card-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -246,6 +246,11 @@ h2 {
 
 /* --- Responsive Styles for Mobile Devices --- */
 @media (max-width: 768px) {
+  /* Reset padding for mobile */
+  .navbar, .left-container, .right-container {
+    padding: 10px 20px;
+  }
+  
   .navbar {
     justify-content: space-between;
   }
@@ -254,7 +259,6 @@ h2 {
     display: flex;
   }
   
-  /* Hide nav links, spacer, and controls on mobile */
   .nav-links,
   .spacer,
   .controls-container {
@@ -289,6 +293,7 @@ h2 {
   .main-content {
     flex-direction: column;
     overflow: visible;
+    gap: 0; /* Remove gap on mobile stack */
   }
 
   .right-container {
