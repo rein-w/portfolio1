@@ -129,6 +129,7 @@
   border: none;
   border-radius: 8px;
   padding: 10px;
+  padding-right: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -250,7 +251,7 @@
 .right-container {
   flex: 2;
   /* Change the first value (top padding) from 20px to 55px */
-  padding: 40px 80px 20px 0; 
+  padding: 40px 80px 40px 0; 
   background-color: #ffffff;
   overflow-y: auto;
   scroll-behavior: smooth; 
@@ -269,13 +270,9 @@ h2 {
 }
 
 /* --- Responsive Styles for Mobile Devices --- */
+/* In App.css, replace your entire @media block with this one */
+
 @media (max-width: 768px) {
-  /* Reset padding for mobile */
-  .navbar, .left-container, .right-container {
-    /* Change the second value (left/right padding) from 20px to 30px, or your desired value */
-    padding: 10px 30px;
-  }
-  
   .navbar {
     justify-content: space-between;
   }
@@ -284,23 +281,49 @@ h2 {
     display: flex;
   }
   
-  .nav-links,
+  /* Hide the spacer and controls on mobile */
   .spacer,
   .controls-container {
     display: none;
   }
+
+  /* CORRECTED .nav-links RULE for mobile */
+  /* In src/App.css, inside the @media block */
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
   
+  /* 1. Add a small gap below the navbar */
+  top: calc(100% + 5px); 
+  
+  /* 2. Position it from the right edge, respecting the navbar's padding */
+  right: 30px; 
+  
+  background-color: #f2f2f2;
+  width: 200px;
+  
+  /* 3. Ensure it has a full border */
+  border: 1px solid #ddd;
+  
+  z-index: 20;
+
+  /* 4. Apply rounded corners to ALL corners */
+  border-radius: 8px; 
+
+  /* Animation properties remain the same */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+  
+  /* When the menu is open, make the links visible */
   .nav-links.active {
-    display: flex;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #f2f2f2;
-    width: 200px;
-    border: 1px solid #ddd;
-    border-top: none;
-    flex-direction: column;
-    z-index: 20;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .nav-links li {
@@ -311,6 +334,7 @@ h2 {
     text-align: left;
   }
 
+  /* Other mobile layout adjustments */
   .App {
     height: auto;
   }
@@ -318,10 +342,17 @@ h2 {
   .main-content {
     flex-direction: column;
     overflow: visible;
-    gap: 0; /* Remove gap on mobile stack */
+    gap: 0;
   }
 
   .right-container {
     overflow-y: visible;
+    /* Add this line to increase the space at the bottom on mobile */
+    margin-bottom: 40px; 
+  }
+
+  /* Reset padding for mobile */
+  .navbar, .left-container, .right-container {
+    padding: 10px 30px;
   }
 }
